@@ -1,0 +1,18 @@
+services:
+  hpp:
+    build:
+      context: .
+    image: hpp-3d:latest
+    container_name: hpp-3d
+    ports:
+      - "${HPP_PORT:-8080}:3001"
+    environment:
+      NODE_ENV: production
+      PORT: "3001"
+      DATABASE_PATH: /data/hpp.db
+    volumes:
+      - hpp-data:/data
+    restart: unless-stopped
+
+volumes:
+  hpp-data:
